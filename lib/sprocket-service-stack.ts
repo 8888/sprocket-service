@@ -9,6 +9,7 @@ export class SprocketServiceStack extends Stack {
 
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'SprocketServicePipeline',
+      crossAccountKeys: true,
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('8888/sprocket-service', 'main'),
         commands: ['npm ci', 'npm run build', 'npx cdk synth'],
